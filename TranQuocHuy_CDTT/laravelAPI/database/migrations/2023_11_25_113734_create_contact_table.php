@@ -12,8 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('db_contact', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); //id
+            $table->unsignedInteger('user_id')->nullable();
+            $table->string('name');
+            $table->string('email');
+            $table->string('phone');
+            $table->string('title');
+            $table->mediumText('content');
+            $table->unsignedInteger('replay_id')->nullable();
+            $table->timestamps(); //created_at, updated_at
+            $table->unsignedInteger('created_by')->default(1);
+            $table->unsignedInteger('updated_by')->nullable();
+            $table->unsignedTinyInteger('status')->default(2);
+
         });
     }
 

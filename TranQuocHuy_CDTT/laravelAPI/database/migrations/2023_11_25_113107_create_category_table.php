@@ -12,8 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('db_category', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); //id
+            $table->string('name', 1000);
+            $table->string('slug', 1000);
+            $table->string('image', 1000)->nullable();
+            $table->unsignedInteger('parent_id')->default(0);
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->string('description',1000);
+            $table->timestamps(); //created_at, updated_at
+            $table->unsignedInteger('created_by')->default(1);
+            $table->unsignedInteger('updated_by')->nullable();
+            $table->unsignedTinyInteger('status')->default(2);
+
         });
     }
 

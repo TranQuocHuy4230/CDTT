@@ -12,8 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('db_productsale', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id(); //id
+            $table->unsignedInteger('product_id');
+            $table->double('pricesale');
+            $table->unsignedInteger('qty');
+            $table->datetime('date_begin');
+            $table->datetime('date_end');
+            $table->timestamps(); //created_at, updated_at
+            $table->unsignedInteger('created_by')->default(1);
+            $table->unsignedInteger('updated_by')->nullable();
+
         });
     }
 
